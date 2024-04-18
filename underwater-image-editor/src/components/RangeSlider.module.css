@@ -1,0 +1,43 @@
+
+.rangeSlide{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+    color: white;
+    margin: 10px;
+}
+.sliderContainer{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    width: 70vw;
+}
+.slider{
+    width: 100%;
+    height: 0.5em;
+    outline: none;
+    border-radius: 3px;
+    background: darkgrey;
+    cursor: pointer;
+}
+.sliderValues{
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.numberInput{
+    background-color: aquamarine;
+    color: black;
+    width: 4em;
+    border: 1px black solid;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
