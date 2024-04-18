@@ -1,12 +1,17 @@
 import { useState } from 'react'
-import Header from './components/Header'
+import Navbar from './components/Navbar'
+import MainView from './components/MainView.jsx'
+import Footer from './components/Footer.jsx'
 
 function App() {
   
   return(
-    <>
-      <Header/>
-    </>)
+    <div className='container'>
+      <Navbar />
+      <MainView />
+      <Footer />
+    </div>
+    )
 
 }
 
