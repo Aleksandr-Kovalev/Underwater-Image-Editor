@@ -1,86 +1,64 @@
 import React, {useState, useEffect, useRef} from 'react'
 import styles from './RangeSlider.module.css'
 
-const RangeSlider = ({min, max, value, step}) => {
+const RangeSlider = (props) => {
 
-    const [sliderValue, setSliderValue] = useState(value);
-    const [inputValue, setInputValue] = useState(value);
+    const [sliderValue, setSliderValue] = useState(0);
 
-    const handleSliderInput = (event) => {
-        const range = max - min;
-        const distance = sliderRef.current.value - min;
-        const percentage = (distance / range) * 100;
+    const handleSliderChange = (event) => {
 
-        setInputValue(event.current.value);
-        setSliderValue(event.current.value);
+        let value = event.target.value;
+        setSliderValue(value);
+        props.setValue(value);
 
     }
 
+    const handleInputChange = (event) => {
 
+        let value = event.target.value;
 
-    //const [sliderRange, setSliderRange] = useState(value);
-    //const [inputValue, setInputValue] = useState(value);
-    //const sliderRef = useRef(null);
+        if(value > props.max)
+            value = props.max;
 
-    /*
-    function handleSliderInput() {
-        const range = max - min;
-        const distance = sliderRef.current.value - min;
-        const percentage = (distance / range) * 100;
+        if(value < props.min)
+            value = props.min;
 
-        setSliderRange(percentage);
-        setInputValue(sliderRef.current.value);
+        if(value % props.step != 0)
+            value = Math.floor(value);
+
+        setSliderValue(value);
+        props.setValue(value);
+
     }
-    
-   
-    useEffect(() => {
-        handleSliderInput();
-    }, [value])
-    */
 
   return (
 
-    <div>
-        <div>
-            <small>{min}</small>
-                <span>{inputValue}</span>
-
-                {/*<input
-                    type="number"
-                    value={inputValue}
-                    onChange={handleSliderInput}
-                    className={styles.numberInput}
-                />*/}
-            <small>{max}</small>
-        </div>
-        <div className={styles.sliderContainer}>
-            <input type="range" min={min} max={max} step={step} onChange={handleSliderInput} className={styles.slider}/>
-            <div className={styles.sliderThumb}></div>
-            <div className={styles.progress}></div>
-        </div>
-    </div>
-
-
-    /*
     <div className={styles.rangeSlider}>
         <div className={styles.sliderValues}>
-            <small>{min}</small>
-            <input 
-                type="number"
-                value={inputValue}
-                onChange={handleSliderInput}
-                min={min} max={max}
-                className={styles.numberInput}
-                step={step}
-            />
-            <small>{max}</small>
+            <small>{props.min}</small>
+                <input type ="number"
+                    min={props.min}
+                    max={props.max}
+                    step={props.step}
+                    value={sliderValue}
+                    onChange={handleInputChange}
+                    className={styles.numberInput}
+                />
+            <small>{props.max}</small>
         </div>
         <div className={styles.sliderContainer}>
-            <input type="range" onChange={handleSliderInput} className={styles.slider}/>
-            <div className={styles.sliderThumb}></div>
-            <div className={styles.progress}></div>
+                <input type ="range"
+                    min={props.min}
+                    max={props.max}
+                    step={props.step}
+                    value={sliderValue}
+                    onChange={handleSliderChange}
+                    className={styles.slider}
+                />
+                <div className={styles.sliderThumb}></div>
+                <div className={styles.progress}></div>
         </div>
-    </div>*/
+    </div>
   )
 }
 

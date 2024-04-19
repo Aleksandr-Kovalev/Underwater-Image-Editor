@@ -5,15 +5,15 @@
     display:flex;
     align-items: center;
     flex-direction: column;
-    margin: 20px;
+    margin: 10px;
 }
 .imgContainer{
     background-color: lightgrey;
     border: 2px solid white;
     display: flex;
     justify-content: center;
-    width: 1200px;
-    height: 800px;
+    width: 1000px;
+    height: 600px;
     margin: 20px;
 }
 .container img{
@@ -30,9 +30,9 @@
 }
 .imgControls button{
     width: 100px;
-    height: 30px;
-    font-size: 1.1em;
+    height: 20px;
     font-weight: bold;
+    font-family: sans-serif;
     margin: 20px 5px;
     padding: 5px;
     background-color: hsla(91, 70%, 15%, 0.7);
@@ -45,4 +45,8 @@
 }
 .imgControls button:hover{
     background-color: hsla(91, 40%, 40%, 0.9);
+}
+.container small{
+    font-family: sans-serif;
+    padding: 5px;
 }
