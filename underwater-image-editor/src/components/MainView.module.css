@@ -1,39 +1,53 @@
-.container{
-    border: 2px solid white;
-    background-color: rgba(211, 211, 211, 0.50);
-    border-radius: 5px;
-    display:flex;
-    align-items: center;
+/* Container styles */
+.container {
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     margin: 10px;
-}
-.imgContainer{
+    width: 95%;
+    min-height: calc(100vh - 70px); /* Subtract navbar height from viewport height */
+    max-height: fit-content;
+    margin-top: 70px; /* Ensure content starts below navbar */
+    position: relative; /* Ensure content can flow normally below navbar */
+    z-index: 0; /* Lower z-index to ensure it's below navbar */
+  }
+  
+  /* Image container styles */
+  .imgContainer {
     background-color: lightgrey;
     border: 2px solid white;
+    width: 90vw;
+    min-height: 60vh;
+    max-height: 80vh;
+    margin: 20px;
     display: flex;
     justify-content: center;
-    width: 1000px;
-    height: 600px;
-    margin: 20px;
-}
-.container img{
-    object-fit: contain;
-    max-height: 100%;
-    max-width: 100%;
-}
-.editControls{
+    align-items: center;
+  }
+  
+  /* Edit controls styles */
+  .editControls {
     height: 100px;
     border: 2px solid white;
-}
-.imgControls{
-    height: auto;
-}
-.imgControls button{
+    width: 90vw;
+    margin: 20px;
+  }
+  
+  /* Image controls styles */
+  .imgControls {
+    display: flex;
+    justify-content: space-between;
+    width: 90vw;
+    margin: 10px;
+  }
+
+  .imgControls button {
     width: 100px;
-    height: 20px;
+    height: 30px;
     font-weight: bold;
     font-family: sans-serif;
-    margin: 20px 5px;
+    margin: 0 5px;
     padding: 5px;
     background-color: hsla(91, 70%, 15%, 0.7);
     color: white;
@@ -41,12 +55,15 @@
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
-    transition: backgroud-color 0.5s ease;
-}
-.imgControls button:hover{
+    transition: background-color 0.5s ease;
+  }
+  
+  .imgControls button:hover {
     background-color: hsla(91, 40%, 40%, 0.9);
-}
-.container small{
+  }
+  
+  .container small {
     font-family: sans-serif;
     padding: 5px;
-}
+    align-self: flex-end;
+  }

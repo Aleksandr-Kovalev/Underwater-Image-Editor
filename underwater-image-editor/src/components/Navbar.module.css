@@ -1,26 +1,32 @@
-.navbar{
+/* Navbar styles */
+.navbar {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: white;
     padding: 15px 7%;
-}
-
-.logo{
+    position: fixed; /* Fixed position to stay at the top */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure navbar is above other content */
+  }
+  
+  .logo {
     width: 100px;
     cursor: pointer;
-}
-
-.navbar ul{
+  }
+  
+  .navbar ul {
     flex: 1;
     list-style: none;
     text-align: right;
-}
-
-.navbar ul li{
+    margin-right: 7%; /* Match padding of navbar for alignment */
+  }
+  
+  .navbar ul li {
     display: inline-block;
     margin: 10px 20px;
     font-size: 18px;
     cursor: pointer;
-}
+  }

@@ -1,0 +1,42 @@
+.container {
+    border: 2px solid grey;
+    background-color: lightgrey;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column; /* Ensure content stacks vertically */
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+    width: 95%; /* Adjust width for responsiveness */
+    min-height: calc(10vh + 20px); /* Adjust min-height for content visibility */
+    padding: 10px; /* Add padding for inner spacing */
+  }
+
+  .sliders{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Ensure full width for alignment */
+  }
+
+  .slider{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0; /* Add some spacing between sliders */
+    width: 100%; /* Ensure full width for alignment */
+  }
+
+  .sliders small{
+    align-content: center;
+  }
+
+  .sliders small, .slider small {
+    text-align: center; /* Center text */
+    margin-bottom: 5px; /* Add spacing below text */
+    width: 100%; /* Ensure full width for alignment */
+  }
+
+  .slider input[type="range"]{
+    width: 80%; /* Adjust the width of the slider input for alignment */
+  }

@@ -1,16 +1,22 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styles from './MainView.module.css'
 import sampleImg from '../assets/sample.jpg'
-import RangeSlider from './RangeSlider.jsx'
+
+import UpLoadButton from './UpLoadButton.jsx'
+import SettingsCard from './SettingsCard.jsx'
+import ImagePreview from './ImagePreview.jsx'
+
 
 
 const MainView = () => {
 
-    const [brightnessValue, setBrightnessValue] = useState(0);
-    const [contrastValue, setContrastValue ] = useState(0);
-    const [redLevel, setRedLevel ] = useState(0);
-    const [hueLevel, setHueLevel ] = useState(0);
-    const [saturationLevel, setSaturationLevel ] = useState(0);
+    const [imgFile, setImgFile] = useState(null);
+    useEffect(() => {
+        let openImgOnLoad = false;
+
+        if (!openImgOnLoad) 
+            setImgFile(sampleImg);
+    }, []);
 
     //console.log(brightnessValue);
     //console.log(contrastValue);
@@ -18,35 +24,21 @@ const MainView = () => {
     //console.log(hueLevel);
     //console.log(saturationLevel);
 
+    //ToDO
+    // the image sliders should be in cards that are paged left and right.
+
   return (
     <div className={styles.container}>
         <div className={styles.imgContainer}>
-            <img src={sampleImg} alt="Image Area"/>
+            {imgFile && <ImagePreview src={imgFile} />}
+            {/*<img src={imgFile} alt="Image Area"/>*/}
         </div>
-        <small>Brightness</small>
-        <div>
-            <RangeSlider min={-100} max={100} value={0} step={0.5} setValue={setBrightnessValue}/>
-        </div>
-        <small>Contrast</small>
-        <div>
-            <RangeSlider min={-100} max={100} value={0} step={0.5} setValue={setContrastValue}/>
-        </div>
-        <small>Red Level</small>
-        <div>
-            <RangeSlider min={-100} max={100} value={0} step={0.5} setValue={setRedLevel}/>
-        </div>
-        <small>Hue</small>
-        <div>
-            <RangeSlider min={-100} max={100} value={0} step={0.5} setValue={setHueLevel}/>
-        </div>
-        <small>Saturation</small>
-        <div>
-            <RangeSlider min={-100} max={100} value={0} step={0.5} setValue={setSaturationLevel}/>
-        </div>
+        <SettingsCard />
+        
         <div className={styles.imgControls}>
-            <button>Upload</button>
-            <button>Download</button>
+            <UpLoadButton  setImgFile={setImgFile} /> 
             <button>Reset</button>
+            <button>Download</button>
         </div>
     </div>  
   )
