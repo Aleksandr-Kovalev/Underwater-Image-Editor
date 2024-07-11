@@ -1,0 +1,31 @@
+.filterCard {
+    border: 2px solid grey;
+    background-color: lightgrey;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px;
+    width: 200px; /* Adjust width as needed */
+  }
+  
+  .filterCard h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .filterCard button {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 8px;
+    background-color: hsla(91, 70%, 15%, 0.7);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
+  
+  .filterCard button:hover {
+    background-color: hsla(91, 40%, 40%, 0.9);
+  }
+  

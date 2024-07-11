@@ -5,6 +5,7 @@ import sampleImg from '../assets/sample.jpg'
 import UpLoadButton from './UpLoadButton.jsx'
 import SettingsCard from './SettingsCard.jsx'
 import ImagePreview from './ImagePreview.jsx'
+import FilterSettings from './FilterSettings.jsx';
 
 const MainView = () => {
   const [imgFile, setImgFile] = useState(null);
@@ -57,6 +58,18 @@ const MainView = () => {
     setPage((prevPage) => (prevPage - 1 + settingsPages.length) % settingsPages.length);
   };
 
+   // Function to handle noise reduction filter
+  const handleNoiseReduction = () => {
+    console.log('Applying noise reduction...');
+    // Implement noise reduction logic here
+  };
+
+  // Function to handle auto white balance filter
+  const handleAutoWhiteBalance = () => {
+    console.log('Applying auto white balance...');
+    // Implement auto white balance logic here
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
@@ -67,6 +80,11 @@ const MainView = () => {
         setters={settingsPages[page].setters} 
         handleNext={handleNext} 
         handlePrev={handlePrev} 
+      />
+      {/* Filter Settings Card */}
+      <FilterSettings 
+        onNoiseReduction={handleNoiseReduction} 
+        onAutoWhiteBalance={handleAutoWhiteBalance} 
       />
       <div className={styles.imgControls}>
         <UpLoadButton setImgFile={setImgFile} />
