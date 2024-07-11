@@ -1,42 +1,94 @@
 .container {
-    border: 2px solid grey;
-    background-color: lightgrey;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column; /* Ensure content stacks vertically */
-    align-items: center;
-    justify-content: space-between;
-    margin: 10px;
-    width: 95%; /* Adjust width for responsiveness */
-    min-height: calc(10vh + 20px); /* Adjust min-height for content visibility */
-    padding: 10px; /* Add padding for inner spacing */
-  }
+  position: relative; /* Allow absolute positioning of child elements */
+  border: 2px solid grey;
+  background-color: lightgrey;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column; /* Ensure content stacks vertically */
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+  width: 95%; /* Adjust width for responsiveness */
+  height: 20vh; /* Set a height based on viewport height */
+  max-height: 30vh; /* Ensure the height doesn't exceed the viewport height */
+  min-height: 10vh; /* Ensure a minimum height */
+  padding: 10px; /* Add padding for inner spacing */
+  overflow: hidden; /* Hide any overflow content */
+}
 
-  .sliders{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%; /* Ensure full width for alignment */
-  }
+.sliders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* Ensure full width for alignment */
+  overflow-y: auto; /* Enable vertical scrolling for the sliders */
+  flex-grow: 1; /* Allow the sliders to take up remaining space */
+}
 
-  .slider{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px 0; /* Add some spacing between sliders */
-    width: 100%; /* Ensure full width for alignment */
-  }
+.slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0; /* Add some spacing between sliders */
+  width: 100%; /* Ensure full width for alignment */
+}
 
-  .sliders small{
-    align-content: center;
-  }
+.sliders small, .slider small {
+  text-align: center; /* Center text */
+  margin-bottom: 5px; /* Add spacing below text */
+  width: 100%; /* Ensure full width for alignment */
+}
 
-  .sliders small, .slider small {
-    text-align: center; /* Center text */
-    margin-bottom: 5px; /* Add spacing below text */
-    width: 100%; /* Ensure full width for alignment */
-  }
+.slider input[type="range"] {
+  width: 80%; /* Adjust the width of the slider input for alignment */
+}
 
-  .slider input[type="range"]{
-    width: 80%; /* Adjust the width of the slider input for alignment */
-  }
+.numberInput {
+  background-color: white;
+  color: black;
+  font-family: sans-serif;
+  width: 60px; /* Adjust this width as needed */
+  border: 1px black solid;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.paginationControls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.paginationControls button {
+  width: 40px;
+  height: 40px;
+  background-color: hsla(91, 70%, 15%, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem; /* Adjust font size for arrows */
+}
+
+.paginationControls button:hover {
+  background-color: hsla(91, 40%, 40%, 0.9);
+}
+
+.paginationControls .left {
+  position: absolute;
+  left: 10px; /* Adjust to fit within the container */
+}
+
+.paginationControls .right {
+  position: absolute;
+  right: 10px; /* Adjust to fit within the container */
+}
