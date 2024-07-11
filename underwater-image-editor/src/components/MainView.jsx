@@ -12,6 +12,8 @@ const MainView = () => {
   const [brightnessValue, setBrightnessValue] = useState(0);
   const [contrastValue, setContrastValue] = useState(0);
   const [redLevel, setRedLevel] = useState(0);
+  const [blueLevel, setBlueLevel] = useState(0);
+  const [greenLevel, setGreenLevel] = useState(0);
   const [hueLevel, setHueLevel] = useState(0);
   const [saturationLevel, setSaturationLevel] = useState(0);
 
@@ -32,9 +34,11 @@ const MainView = () => {
     },
     {
       settings: [
-        { label: 'Red Level', min: -100, max: 100, value: redLevel, step: 0.5 }
+        { label: 'Red Level', min: -100, max: 100, value: redLevel, step: 0.5 },
+        { label: 'Blue Level', min: -100, max: 100, value: blueLevel, step: 0.5 },
+        { label: 'Green Level', min: -100, max: 100, value: greenLevel, step: 0.5 }
       ],
-      setters: [setRedLevel]
+      setters: [setRedLevel, setBlueLevel, setGreenLevel]
     },
     {
       settings: [

@@ -6,7 +6,7 @@
     justify-content: space-between;
     background: white;
     padding: 15px 7%;
-    position: fixed; /* Fixed position to stay at the top */
+    position: top; /* Fixed position to stay at the top */
     top: 0;
     left: 0;
     z-index: 1000; /* Ensure navbar is above other content */

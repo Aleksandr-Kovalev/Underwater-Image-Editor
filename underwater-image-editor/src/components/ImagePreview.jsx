@@ -1,38 +1,38 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react';
+import styles from './ImagePreview.module.css';
 
-export const ImagePreview = ({src}) => {
+export const ImagePreview = ({ src }) => {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const imageRef = useRef(null);
 
-    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-    const imageRef = useRef(null);
+  const updateDimensions = () => {
+    if (imageRef.current) {
+      const aspectRatio = imageRef.current.naturalWidth / imageRef.current.naturalHeight;
+      const containerWidth = window.innerWidth * 0.9; // Adjust 0.9 to the desired percentage of window width
+      const containerHeight = containerWidth / aspectRatio;
+      setDimensions({ width: containerWidth, height: containerHeight });
+    }
+  };
 
-        const updateDimensions = () => {
-            if (imageRef.current) {
-            const aspectRatio = imageRef.current.naturalWidth / imageRef.current.naturalHeight;
-            const newWidth = window.innerWidth * 0.9; // Adjust 0.8 to the desired percentage of window width
-            const newHeight = newWidth / aspectRatio;
-            setDimensions({ width: newWidth, height: newHeight });
-        }
-    };
-
-    useEffect(() => {
+  useEffect(() => {
     updateDimensions();
     window.addEventListener('resize', updateDimensions);
     return () => {
       window.removeEventListener('resize', updateDimensions);
     };
-    }, [src]);
+  }, [src]);
 
-    return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <img
-            ref={imageRef}
-            src={src}
-            alt="Preview"
-            onLoad={updateDimensions} // Update dimensions when the image is loaded
-            style={{ width: dimensions.width, height: dimensions.height }}
-        />
-        </div>
-    );
+  return (
+    <div className={styles.imageContainer}>
+      <img
+        ref={imageRef}
+        src={src}
+        alt="Preview"
+        onLoad={updateDimensions}
+        className={styles.image}
+      />
+    </div>
+  );
 };
 
 export default ImagePreview;

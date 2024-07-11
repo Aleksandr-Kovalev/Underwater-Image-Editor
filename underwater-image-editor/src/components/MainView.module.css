@@ -1,34 +1,37 @@
 /* MainView.module.css */
 
 .container {
+  border: 2px solid grey;
+  background-color: lightgrey;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin: 10px;
-  width: 95%;
-  min-height: calc(100vh - 70px); /* Subtract navbar height from viewport height */
-  max-height: fit-content;
-  margin-top: 70px; /* Ensure content starts below navbar */
-  position: relative; /* Ensure content can flow normally below navbar */
-  z-index: 0; /* Lower z-index to ensure it's below navbar */
+  margin: 10px auto; /* Center the container */
+  width: 95%; /* Adjust width for responsiveness */
+  max-width: 1500px; /* Set a max width limit */
+  min-height: calc(10vh + 20px); /* Adjust min-height for content visibility */
+  padding: 10px; /* Add padding for inner spacing */
 }
 
 .imgContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   background-color: lightgrey;
   border: 2px solid white;
   justify-content: center;
-  width: 90vw;
-  min-height: 80vh;
   margin: 20px;
 }
 
 /* Image controls styles */
 .imgControls {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  width: 90vw;
-  margin: 10px;
+  margin: 20px 0;
 }
 
 .imgControls button {
