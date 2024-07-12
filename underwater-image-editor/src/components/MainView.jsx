@@ -9,6 +9,7 @@ import FilterSettings from './FilterSettings.jsx';
 
 const MainView = () => {
   const [imgFile, setImgFile] = useState(null);
+  const [originalImg, setOriginalImg] = useState(null);
   const [page, setPage] = useState(0);
   const [brightnessValue, setBrightnessValue] = useState(0);
   const [contrastValue, setContrastValue] = useState(0);
@@ -23,6 +24,7 @@ const MainView = () => {
 
     if (!openImgOnLoad) 
         setImgFile(sampleImg);
+        setOriginalImg(sampleImg); // Store the original image
   }, []);
 
   const settingsPages = [
@@ -73,7 +75,15 @@ const MainView = () => {
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
-        {imgFile && <ImagePreview src={imgFile} />}
+        {imgFile && (
+          <ImagePreview
+            src={imgFile}
+            brightness={brightnessValue}
+            contrast={contrastValue}
+            hue={hueLevel}
+            saturation={saturationLevel}
+          />
+        )}
       </div>
       <SettingsCard 
         settings={settingsPages[page].settings} 
@@ -87,7 +97,12 @@ const MainView = () => {
         onAutoWhiteBalance={handleAutoWhiteBalance} 
       />
       <div className={styles.imgControls}>
-        <UpLoadButton setImgFile={setImgFile} />
+      <UpLoadButton 
+          setImgFile={(file) => {
+            setImgFile(file);
+            setOriginalImg(file);
+          }} 
+        />
         <button>Reset</button>
         <button>Download</button>
       </div>
