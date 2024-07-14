@@ -29,4 +29,5 @@ const UpLoadButton = ({setImgFile}) => {
 
 export default UpLoadButton
 
+
 //TODO Fix style

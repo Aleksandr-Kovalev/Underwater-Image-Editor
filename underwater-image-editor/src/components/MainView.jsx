@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import styles from './MainView.module.css'
 import sampleImg from '../assets/sample.jpg'
 
@@ -18,6 +18,7 @@ const MainView = () => {
   const [greenLevel, setGreenLevel] = useState(0);
   const [hueLevel, setHueLevel] = useState(0);
   const [saturationLevel, setSaturationLevel] = useState(0);
+  const imagePreviewRef = useRef(null);
 
   useEffect(() => {
     let openImgOnLoad = false;
@@ -26,6 +27,17 @@ const MainView = () => {
         setImgFile(sampleImg);
         setOriginalImg(sampleImg); // Store the original image
   }, []);
+
+   // Function to reset all sliders to 0
+  const resetSliders = () => {
+    setBrightnessValue(0);
+    setContrastValue(0);
+    setRedLevel(0);
+    setBlueLevel(0);
+    setGreenLevel(0);
+    setHueLevel(0);
+    setSaturationLevel(0);
+  };
 
   const settingsPages = [
     {
@@ -72,6 +84,58 @@ const MainView = () => {
     // Implement auto white balance logic here
   };
 
+  const handleImageUpload = (imageUrl) => {
+    setImgFile(imageUrl); // Update the current image
+    setOriginalImg(imageUrl); // Store the original image
+    resetSliders(); // Reset sliders when new image is uploaded
+  };
+
+  const handleDownload = () => {
+    if (!imgFile) {
+      console.error('Image is not loaded yet');
+      return;
+    }
+  
+    // Create a hidden canvas
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+  
+    // Load the original image
+    const img = new Image();
+    img.onload = () => {
+      // Set canvas dimensions to match original image
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+  
+      // Apply settings from settingsPages to the canvas context
+      ctx.filter = `brightness(${1 + brightnessValue / 100}) 
+                    contrast(${1 + contrastValue / 100}) 
+                    hue-rotate(${hueLevel}deg) 
+                    saturate(${1 + saturationLevel / 100})`;
+      
+      // Draw the image with applied filters onto the canvas
+      ctx.drawImage(img, 0, 0);
+  
+      // Convert canvas to a downloadable image
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+  
+        // Create a temporary link element to trigger download
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `edited_image.${imgFile.type.split('/')[1]}`; // Use the original image's type
+        document.body.appendChild(link);
+        link.click();
+  
+        // Clean up
+        URL.revokeObjectURL(url);
+        document.body.removeChild(link);
+      }, imgFile.type); // Pass the original image type to preserve format
+    };
+  
+    img.src = imgFile;
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
@@ -97,14 +161,9 @@ const MainView = () => {
         onAutoWhiteBalance={handleAutoWhiteBalance} 
       />
       <div className={styles.imgControls}>
-      <UpLoadButton 
-          setImgFile={(file) => {
-            setImgFile(file);
-            setOriginalImg(file);
-          }} 
-        />
-        <button>Reset</button>
-        <button>Download</button>
+      <UpLoadButton setImgFile={handleImageUpload} />
+        <button onClick={resetSliders}>Reset</button>
+        <button onClick={handleDownload}>Download</button>
       </div>
     </div>
   );

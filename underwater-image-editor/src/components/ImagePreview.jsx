@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './ImagePreview.module.css';
 
-export const ImagePreview = ({ src, brightness, contrast, hue, saturation }) => {
+export const ImagePreview = ({ src, brightness, contrast, hue, saturation }, ref) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const imageRef = useRef(null);
 
@@ -21,6 +21,7 @@ export const ImagePreview = ({ src, brightness, contrast, hue, saturation }) => 
       window.removeEventListener('resize', updateDimensions);
     };
   }, [src]);
+  
 
   const brightnessFilterValue = 1 + brightness / 100; // Adjusting the value range
   const contrastFilterValue = 1 + contrast / 100; // Adjusting the value range
